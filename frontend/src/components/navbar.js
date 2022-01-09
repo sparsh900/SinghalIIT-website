@@ -10,13 +10,13 @@ class Navigationbar extends Component {
             <Navbar className='navb'>
                 <Nav className="container-fluid">
                 <Navbar.Brand href="#" className='navpadding'>
-                    <img src={Logo}/>
+                    <img src={Logo} className='main_logo'/>
                 </Navbar.Brand>
                 
                     {/* <Nav.Link className='logo_link' href="#">More deets</Nav.Link> */}
                 
                 <Nav.Item className="mr-auto">
-                    <Nav.Link className='logo_link'>Log in</Nav.Link>
+                    <Nav.Link className='logo_link'>Login</Nav.Link>
                 </Nav.Item>
                 </Nav>
             </Navbar>

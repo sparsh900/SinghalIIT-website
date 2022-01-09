@@ -14,7 +14,7 @@ export default class Header_1 extends Component {
                     <Col xs={5} className='header1_image_align'>
                         <img src={Email_Campaign} className='header1_image' />
                     </Col>
-                    <Col xs={5} className='header1_content text-center'>
+                    <Col xs={6} className='header1_content text-center'>
                         <div>
                             <div className='header1_heading'>
                                 Promote and Earn
@@ -34,8 +34,7 @@ export default class Header_1 extends Component {
                             
                         </div>
                     </Col>
-                    <Col xs={2}>
-                    </Col>
+                    
                 </Row>
 
 

@@ -9,8 +9,8 @@ export default class Contact_us extends Component {
     render() {
         return (
             <div>
-                <Row className='contact_padding justify-content-center'>
-                    <Col sm={7} md={5} className='text-center'>
+                <Row className='justify-content-center'>
+                    <Col xs={8} md={6} lg={5} className='contact_padding text-center'>
                         <div className='contact_box'>
 
                             <div className='contact_image_box'>
@@ -24,7 +24,7 @@ export default class Contact_us extends Component {
 
                         </div>
                     </Col>
-                    <Col md={5} sm={7} className='text-center'>
+                    <Col xs={8} md={6} lg={5} className='contact_padding text-center'>
                         <div className='contact_box'>
 
                             <div className='contact_image_box'>
@@ -39,8 +39,8 @@ export default class Contact_us extends Component {
                         </div>
                     </Col>
                 </Row>
-                <Row className='contact_padding justify-content-center'>
-                    <Col sm={7} md={5} className='text-center'>
+                <Row className='justify-content-center'>
+                    <Col xs={8} md={6} lg={5} className='contact_padding  text-center'>
                         <div className='contact_box'>
 
                             <div className='contact_image_box'>
@@ -54,7 +54,7 @@ export default class Contact_us extends Component {
 
                         </div>
                     </Col>
-                    <Col md={5} sm={7} className='text-center'>
+                    <Col xs={8} md={6} lg={5} className='contact_padding  text-center'>
                         <div className='contact_box'>
 
                             <div className='contact_image_box'>

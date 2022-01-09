@@ -9,7 +9,7 @@ export default class Table_2 extends Component {
                 <Row className='justify-content-center'>
                     <Col sm={10} md={9} >
                         <div className='table_border_col'>
-                            <Table className="table table-border no-borderRadiusImportant border-radiusImportant" size='lg' scrollX hover>
+                            <Table className="table table-border" size='lg' scrollX hover>
                                 <thead>
                                     <tr className='table_row_heading'>
                                         <th className='table_column_heading'>Student Name</th>

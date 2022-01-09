@@ -8,7 +8,8 @@ export default class Table1 extends Component {
                 <Row className='justify-content-center'>
                     <Col sm={10} md={9} >
                         <div className='table_border_col'>
-                            <Table className="table table-bordered table_border" size='lg' scrollX bordered hover>
+                            <section className='table-radius'>
+                            <Table className="table table-bordered" style={{"borderWidth":"1px", 'borderColor':"#53B8BB", 'borderStyle':'solid'}} size='lg' scrollX hover>
                                 <thead>
                                     <tr className='table_row_heading'>
                                         <th className='table_column_heading'>Student Name</th>
@@ -20,7 +21,7 @@ export default class Table1 extends Component {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className='table_row'>
+                                    <tr className='table_row2'>
                                         <td >1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
@@ -28,7 +29,7 @@ export default class Table1 extends Component {
                                         <td>Otto</td>
                                         <td>Otto</td>
                                     </tr>
-                                    <tr className='table_row'>
+                                    <tr className='table_row2'>
                                         <td >1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
@@ -36,7 +37,7 @@ export default class Table1 extends Component {
                                         <td>Otto</td>
                                         <td>Otto</td>
                                     </tr>
-                                    <tr className='table_row'>
+                                    <tr className='table_row2'>
                                         <td >1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
@@ -54,6 +55,7 @@ export default class Table1 extends Component {
                                     </tr>
                                 </tbody>
                             </Table>
+                            </section>
                         </div>
 
                     </Col>

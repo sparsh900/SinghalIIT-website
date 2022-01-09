@@ -26,16 +26,16 @@ class Dashboard extends Component{
                 <Navigationbar/>
                 <Top_bk_image/>
                 <Row className='card-row justify-content-center'>
-                    <Col sm={6} md={3} className='text-center'>
+                    <Col xs={6} lg={3} className='card_col_padding text-center'>
                     <Card_render src={Dashboard1} label={"Lectures"}/>
                     </Col>
-                    <Col sm={6} md={3} className='text-center'>
+                    <Col xs={6} lg={3} className='card_col_padding text-center'>
                     <Card_render src={Dashboard2} label={"Chat with Us"}/>
                     </Col>
-                    <Col sm={6} md={3} className='text-center'>
+                    <Col xs={6} lg={3} className='card_col_padding text-center'>
                     <Card_render src={Dashboard3} label={"Study Material"}/>
                     </Col>
-                    <Col sm={6} md={3} className='text-center'>
+                    <Col xs={6} lg={3} className='card_col_padding text-center'>
                     <Card_render src={Dashboard4} label={"Practice Tests"}/>
                     </Col>
                 </Row>

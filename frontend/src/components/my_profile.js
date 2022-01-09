@@ -14,7 +14,7 @@ class My_Profile extends Component{
                 <Navigationbar/>
                 <Top_bk_image_2/>
                 <Row className='justify-content-center form1_padding'>
-                    <Col lg={3} md={8} xs={10}>
+                    <Col xl={3} lg={4} md={8} xs={9}>
                     <Form_1/>
                     </Col>
                 </Row>

@@ -29,6 +29,9 @@ import My_Profile from "./components/my_profile";
 import Chat_with_us from "./components/chat_with_us";
 import Student_enrollment from "./components/student_enrollment";
 import Start_page from "./components/start.js"
+import Home from "./components/home.js"
+import Home_2 from "./components/home2";
+import Promote_and_earn from "./components/promote_and_earn";
 
 ReactDOM.render(
   
@@ -52,6 +55,9 @@ ReactDOM.render(
        <Route exact path="/myprofile" element={<My_Profile/>} />
        <Route exact path="/chatwithus" element={<Chat_with_us/>} />
        <Route exact path="/student_enrollment" element={<Student_enrollment/>} />
+       <Route exact path="/home" element={<Home/>} />
+       <Route exact path="/promote_and_earn" element={<Promote_and_earn/>} />
+       <Route exact path="/home2" element={<Home_2/>} />
       </Routes>
     </Router>
   </React.StrictMode>,
