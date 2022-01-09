@@ -15,7 +15,7 @@ export default class Footer extends Component {
                         <Container>
                             <Row className="justify-content-center">
                                 <Col xs={12} md={6} className="footer_content text-center">
-                                    info@singhaliit.com
+                                    {/* info@singhaliit.com */}
                                 </Col>
                                 <Col xs={12} md={6} className="text-center">
                                     <p className="footer_terms">Terms & Conditions</p>
