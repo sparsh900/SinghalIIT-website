@@ -9,30 +9,64 @@ import GoogleButton from 'react-google-button'
 import GoogleLogin from 'react-google-login'
 import Footer from './footer'
 import axios from 'axios'
+import My_Profile from './my_profile'
+import { BrowserRouter as Router, Route, Link, Navigate } from 'react-router-dom';
+import Dashboard from './dashboard'
 
 export default class Home extends Component {
 
     constructor(props) {
+        
         super(props);
         this.handleModal = this.handleModal.bind(this);
         this.state = {
-            show: false
+            show: false,
+            val: ''
         }
+    }
+
+    updateval1=()=>{
+        this.setState({ val: 1 })
+    }
+
+    updateval2=()=>{
+        this.setState({ val: 2 })
+    }
+
+    updateval3=()=>{
+        this.setState({ val: 3 })
     }
 
     handleModal() {
         this.setState({ show: !this.state.show })
     }
 
+    componentDidMount(){
+
+        if(localStorage.getItem('mail')==null)
+        {
+            this.updateval1()
+        }
+        else{
+            this.updateval2()
+        }
+    }
+    
+
     responsegoogle=(response)=>{
         console.log(response)
-        localStorage.setItem('mail',response.profileObj.email )
-
-        axios.post('/API/user_exist',{email: localStorage.getItem('mail')})
+        axios.post('/API/user_exist',{email: response.profileObj.email})
     .then(res=>{
-      if(res.data=="false"){
-          
+        console.log(res.data)
+      if(res.data.result==false){
+          this.updateval3()
       }
+      else{
+        localStorage.setItem('mail',response.profileObj.email )
+        this.updateval2()
+      }
+
+      
     })
     .catch(err=>{console.error(err)})
 
@@ -54,6 +88,19 @@ export default class Home extends Component {
 
 
     render() {
+        if(this.state.val==2){
+            return(
+                <Dashboard/>
+            )
+        }
+
+        if(this.state.val==3){
+            return(
+                <My_Profile/>
+            )
+        }
+
+        else{
         return (
             <div className='scroll_remove'>
                 <Navigationbar/>
@@ -110,5 +157,6 @@ export default class Home extends Component {
 
             </div>
         )
+        }
     }
 }

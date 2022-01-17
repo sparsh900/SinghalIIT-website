@@ -52,7 +52,7 @@ ReactDOM.render(
       <Routes>
        <Route exact path="/" element={<Home/>} />
        <Route exact path="/dashboard2" element={<Dashboard_2/>} />
-       <Route exact path="/myprofile" element={<My_Profile/>} />
+       {/* <Route exact path="/myprofile" element={<My_Profile/>} /> */}
        <Route exact path="/chatwithus" element={<Chat_with_us/>} />
        <Route exact path="/student_enrollment" element={<Student_enrollment/>} />
        <Route exact path="/home" element={<Home/>} />
