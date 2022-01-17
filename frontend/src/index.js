@@ -50,7 +50,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Routes>
-       <Route exact path="/" element={<Dashboard/>} />
+       <Route exact path="/" element={<Home/>} />
        <Route exact path="/dashboard2" element={<Dashboard_2/>} />
        <Route exact path="/myprofile" element={<My_Profile/>} />
        <Route exact path="/chatwithus" element={<Chat_with_us/>} />

@@ -12,7 +12,7 @@ export default class Header_2 extends Component {
                     <Col xs={5} className='header1_image_align'>
                         <img src={Header2} className='header1_image' />
                     </Col>
-                    <Col xs={5} className='header2_content text-center'>
+                    <Col xs={6} className='header2_content text-center'>
                         <div>
                             <div className='header1_heading'>
                             Welcome Rushil !

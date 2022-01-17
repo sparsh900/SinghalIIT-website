@@ -18,8 +18,20 @@ import Dashboard2 from "../image/dashboard2.png"
 import Dashboard3 from "../image/dashboard3.png"
 import Dashboard4 from "../image/dashboard4.png"
 import "../App.css";
+import axios from 'axios'
 
 class Dashboard extends Component{
+
+    componentDidMount(){
+
+        axios.get('/API/time')
+          .then(res=>{
+            console.log(res.data)
+          })
+          .catch(err=>console.error(err))
+        }
+
+        
     render(){
         return (
             <div className='scroll_remove'>

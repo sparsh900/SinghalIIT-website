@@ -12,10 +12,7 @@ def get_time():
 
 @app.route('/API/user_exist', methods=['GET', 'POST'])
 def user_exist():
-    data = request.get_json()
-    print(data)
-
-    return {'result': 1}
+    return {'result': api.user_exist(request.get_json()['email'])}
 
 # @app.route('/API/RegisterUser')
 # def RegisterUser():

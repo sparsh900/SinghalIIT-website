@@ -8,7 +8,7 @@ import random
 import datetime
 
 
-def email_exist(email):
+def user_exist(email):
     conn = pymysql.connect(
         host = rds.host,
         port = rds.port,
