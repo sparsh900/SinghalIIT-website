@@ -1,6 +1,6 @@
 import pymysql
 import aws_credentials as rds
-import DB_cryptography as crypt
+# import DB_cryptography as crypt
 
 
 import string
@@ -94,7 +94,7 @@ def registar_user(name, email, mobile, password, BatchStartYear, PromoCode):
     )
     try:
         with conn.cursor() as cur:
-            sql = "insert into UserMaster(UserName, Email, MobileNumber, PasswordHash, BatchStartYear, PromoCode) value(%s,%s,%s,%s,%s,%s)"
+            sql = "insert into UserMaster(UserName, Email, MobileNumber, BatchStartYear, PromoCode) value(%s,%s,%s,%s,%s)"
             cur.execute(sql,(name, email, int(mobile), crypt.encrypt(password), BatchStartYear, PromoCode))
             conn.commit()
             
