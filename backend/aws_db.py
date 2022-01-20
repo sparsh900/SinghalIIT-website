@@ -27,6 +27,7 @@ def user_exist(email):
 
     except Exception as e:
         print("email exist Exception error in email",email,"error: ",e)
+        return -2
 
 
 def generate_promoCode(name):
@@ -74,8 +75,8 @@ def fetch_BatchStartYear():
     )
     try:
         with conn.cursor() as cur:
-            sql = "select BatchStartYear from ConfigurableValues"
-            cur.execute(sql)
+            sql = "select CurrentYearValue from CurrentYear where ID = %s"
+            cur.execute(sql,1)
             data = cur.fetchone()
             return data[0]
 
@@ -84,7 +85,7 @@ def fetch_BatchStartYear():
         return False
 
 
-def registar_user(name, email, mobile, password, BatchStartYear, PromoCode):
+def registar_user(Section, name, email, mobile):
     conn = pymysql.connect(
         host = rds.host,
         port = rds.port,
@@ -94,45 +95,20 @@ def registar_user(name, email, mobile, password, BatchStartYear, PromoCode):
     )
     try:
         with conn.cursor() as cur:
-            sql = "insert into UserMaster(UserName, Email, MobileNumber, BatchStartYear, PromoCode) value(%s,%s,%s,%s,%s)"
-            cur.execute(sql,(name, email, int(mobile), crypt.encrypt(password), BatchStartYear, PromoCode))
+            sql = "insert into UserMaster(Section, Name, Email, MobileNumber, BatchStartYear, PromoCode, isActive) value(%s,%s,%s,%s,%s,%s,%s)"
+            year = fetch_BatchStartYear()
+            if(year==False):
+                return -1
+            promo = generate_promoCode(name)
+            if(promo==False):
+                return -1
+            cur.execute(sql,(Section,name, email, mobile, year, promo,1))
             conn.commit()
-            
+            return 1
 
     except Exception as e:
         print("registar_user Exception error: ",e)
-
-
-    
-
-
-def check_password(email, password):
-    conn = pymysql.connect(
-        host = rds.host,
-        port = rds.port,
-        user = rds.user,
-        password = rds.password,
-        db = rds.databasename,
-    )
-    try:
-        with conn.cursor() as cur:
-            sql = "select UserId, UserName, Email, PasswordHash, MobileNumber, DateOfBirth, PromoCode from UserMaster where Email=%s"
-            cur.execute(sql,(email))
-            data = cur.fetchone()
-            
-            db_password = crypt.decrypt(bytes(str(data[3]), encoding='utf-8'))
-
-            if(password == db_password):
-                
-                return {'correct': "correct","UserID": data[0], "Name": data[1], "Email": data[2], "MobileNumber": data[4], "DateOfBirth": data[5], "PromoCode": data[6]}
-            else:
-                return {'correct': "wrong"}
-
-
-    except Exception as e:
-        print("error in loging-in for email",email,"error: ",str(e))
-        return {'correct': "wrong"}
-
+        return -1
 
 
 
