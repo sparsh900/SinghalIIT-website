@@ -37,6 +37,13 @@ def Fee_table_content():
         return {'error': "Database is down"}
     return {'error': "none", result: result}
 
+@app.route('/API/promo_code_exist', methods=['GET', 'POST'])
+def promo_code_exist():
+    result = api.promo_code(request.get_json()['promo_code'])
+    if result == -1:
+        return {'error': "Database is down"}
+    return {'error': "none", result: result}
+
 
 # for local 
 if __name__=='__main__':

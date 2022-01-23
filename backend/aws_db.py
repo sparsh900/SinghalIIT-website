@@ -165,7 +165,6 @@ def get_student_batch_year(email):
         print("error in getting fees structure error: ",str(e))
         return -1
 
-print(get_student_batch_year("mukuldhiman8802@gmail.com"))
 
 
 def record_entry(userid,code):
@@ -210,7 +209,7 @@ def promo_code(code):
 
     except Exception as e:
         print("error in promo code error: ",str(e))
-        return 0
+        return -1
 
 def user_data(email):
     conn = pymysql.connect(
