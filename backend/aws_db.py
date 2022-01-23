@@ -114,7 +114,7 @@ def registar_user(Section, name, email, mobile):
 
 
 
-def get_fees_structure():
+def get_fees_structure(year):
     conn = pymysql.connect(
         host = rds.host,
         port = rds.port,
@@ -124,11 +124,11 @@ def get_fees_structure():
     )
     try:
         with conn.cursor() as cur:
-            sql = "select BatchStartYear, FirstInstallmentAmount, SecondInstallmentAmount, ThirdInstallmentAmount, GSTrate, FirstInstallmentDueDate, SecondInstallmentDueDate, ThirdInstallmentDueDate, PromotionBonusAmount, PromotionDiscountAmount from ConfigurableValues"
-            cur.execute(sql)
+            sql = "select * from ConfigurableValues where BatchStartYear = %s"
+            cur.execute(sql,(year))
             data = cur.fetchone()
 
-            keys = ["BatchStartYear", "FirstInstallmentAmount", "SecondInstallmentAmount", "ThirdInstallmentAmount", "GSTrate", "FirstInstallmentDueDate", "SecondInstallmentDueDate", "ThirdInstallmentDueDate", "PromotionBonusAmount", "PromotionDiscountAmount"]
+            keys = ["BatchStartYear", "1stInstallmentAmount", "2ndInstallmentAmount", "3rdInstallmentAmount", "1stInstallmentDueDate", "2ndInstallmentDueDate", "3rdInstallmentDueDate", "1stInstallmentDueDate","2ndInstallmentDueDate", "3rdInstallmentDueDate","PromotionBonusAmount","PromotionDiscountAmount"]
             
             dic={}
             for i in range(len(data)):
@@ -141,7 +141,32 @@ def get_fees_structure():
 
     except Exception as e:
         print("error in getting fees structure error: ",str(e))
-        return 0
+        return -1
+
+
+
+def get_student_batch_year(email):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select BatchStartYear from UserMaster where email = %s"
+            cur.execute(sql,(email))
+            data = cur.fetchone()
+
+            return data[0]
+
+    except Exception as e:
+        print("error in getting fees structure error: ",str(e))
+        return -1
+
+print(get_student_batch_year("mukuldhiman8802@gmail.com"))
+
 
 def record_entry(userid,code):
     conn = pymysql.connect(
