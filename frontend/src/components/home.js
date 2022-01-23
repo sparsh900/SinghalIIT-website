@@ -21,7 +21,8 @@ export default class Home extends Component {
         this.handleModal = this.handleModal.bind(this);
         this.state = {
             show: false,
-            val: ''
+            val: '',
+            email: ''
         }
     }
 
@@ -55,9 +56,10 @@ export default class Home extends Component {
 
     responsegoogle=(response)=>{
         console.log(response)
+        this.setState({ email: response.profileObj.email })
         axios.post('/API/user_exist',{email: response.profileObj.email})
     .then(res=>{
-        console.log(res.data)
+    if(res.data.error=='none'){
       if(res.data.result==false){
           this.updateval3()
       }
@@ -65,7 +67,11 @@ export default class Home extends Component {
         localStorage.setItem('mail',response.profileObj.email )
         this.updateval2()
       }
-
+    }
+    else{
+        alert(res.data.error)
+        alert("try again after some time")
+    }
       
     })
     .catch(err=>{console.error(err)})
@@ -96,7 +102,7 @@ export default class Home extends Component {
 
         if(this.state.val==3){
             return(
-                <My_Profile/>
+                <My_Profile email={this.state.email}/>
             )
         }
 

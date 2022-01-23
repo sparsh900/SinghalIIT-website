@@ -28,9 +28,9 @@ def RegisterUser():
 @app.route('/API/Fee_table_content', methods=['GET', 'POST'])
 def Fee_table_content():
     student_year = api.get_student_batch_year(request.get_json()['Email'])
-    if(student_year==-1){
+    if student_year==-1:
         return {'error': "invalid Batch start year"}
-    }
+    
     result = api.get_fees_structure(student_year)
 
     if result == -1:
