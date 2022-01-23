@@ -165,7 +165,6 @@ def get_student_batch_year(email):
         print("error in getting fees structure error: ",str(e))
         return -1
 
-print(get_student_batch_year("mukuldhiman8802@gmail.com"))
 
 
 def record_entry(userid,code):
@@ -210,7 +209,75 @@ def promo_code(code):
 
     except Exception as e:
         print("error in promo code error: ",str(e))
-        return 0
+        return -1
+
+def get_user_id(email):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select UserID from UserMaster where Email= %s"
+            cur.execute(sql,email)
+            
+            
+
+            return cur.fetchone()[0]
+
+
+    except Exception as e:
+        print("error in promo code error: ",str(e))
+        return -1
+
+def installment_exist(userid,installment_number):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select exists(select * from UserPayments where UserID= %s and InstallmentNumber = %s)"
+            cur.execute(sql,(userid,installment_number))
+            
+            
+
+            return cur.fetchone()[0]
+
+
+    except Exception as e:
+        print("error in promo code error: ",str(e))
+        return -1
+
+
+def installment_status(userid,installment_number):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "select StatusForPayer from UserPayments where UserID= %s and InstallmentNumber = %s"
+            cur.execute(sql,(userid,installment_number))
+            
+            
+
+            return cur.fetchone()[0]
+
+
+    except Exception as e:
+        print("error in promo code error: ",str(e))
+        return -1
+
 
 def user_data(email):
     conn = pymysql.connect(
