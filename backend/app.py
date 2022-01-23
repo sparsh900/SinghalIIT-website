@@ -44,6 +44,23 @@ def promo_code_exist():
         return {'error': "Database is down"}
     return {'error': "none", result: result}
 
+@app.route('/API/installment_status', methods=['GET', 'POST'])
+def promo_code_exist():
+    userid = api.get_user_id(request.get_json()['Email'])
+    if(userid ==-1){
+        return {'error': "invalid email or db down"}
+    }
+    result = api.installment_exist(userid,request.get_json()['installment_number'])
+    if result == -1:
+        return {'error': "Database is down"}
+    if result == 0:
+        return {'error': "none", result: "No Payment call"}
+    else:
+        status = api.installment_status(userid,request.get_json()['installment_number'])
+        if status == -1:
+            return {'error': "error in getting installment status"}
+        else:
+            return {'error': "none", result: status}
 
 # for local 
 if __name__=='__main__':
