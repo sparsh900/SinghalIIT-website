@@ -22,12 +22,12 @@ def user_exist(email):
             cur.execute(sql,(email))
             data = cur.fetchall()
             if(len(data)==0):
-                return False
-            return True
+                return {"error": 0, "result": False}
+            return {"error": "none", "result": True}
 
     except Exception as e:
         print("email exist Exception error in email",email,"error: ",e)
-        return -2
+        return {"error": 1}
 
 
 def generate_promoCode(name):
