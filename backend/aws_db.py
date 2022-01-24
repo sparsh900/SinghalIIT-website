@@ -136,12 +136,12 @@ def get_fees_structure(year):
 
 
 
-            return dic
+            return {"error": 0, "result": dic}
 
 
     except Exception as e:
         print("error in getting fees structure error: ",str(e))
-        return -1
+        return {"error": 1}
 
 
 
@@ -211,6 +211,7 @@ def promo_code(code):
         print("error in promo code error: ",str(e))
         return -1
 
+
 def get_user_id(email):
     conn = pymysql.connect(
         host = rds.host,
@@ -271,12 +272,12 @@ def installment_status(userid,installment_number):
             
             
 
-            return cur.fetchone()[0]
+            return {"error":0, "result":cur.fetchone()[0]}
 
 
     except Exception as e:
         print("error in promo code error: ",str(e))
-        return -1
+        return {"error":1}
 
 
 def user_data(email):

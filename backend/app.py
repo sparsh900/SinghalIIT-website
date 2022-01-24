@@ -33,9 +33,9 @@ def Fee_table_content():
     
     result = api.get_fees_structure(student_year)
 
-    if result == -1:
+    if result["error"] == 1:
         return {'error': "Database is down"}
-    return {'error': "none", "result": result}
+    return {'error': "none", "result": result["result"]}
 
 @app.route('/API/promo_code_exist', methods=['GET', 'POST'])
 def promo_code_exist():
@@ -57,10 +57,10 @@ def installment_status():
         return {'error': "none", result: "No Payment call"}
     else:
         status = api.installment_status(userid,request.get_json()['installment_number'])
-        if status == -1:
+        if status["error"] == 1:
             return {'error': "error in getting installment status"}
         else:
-            return {'error': "none", result: status}
+            return {'error': "none", result: status["result"]}
 
 # for local 
 if __name__=='__main__':
