@@ -29,7 +29,7 @@ def RegisterUser():
 @app.route('/API/Fee_table_content', methods=['GET', 'POST'])
 def Fee_table_content():
     student_year = api.get_student_batch_year(request.get_json()['Email'])
-    if student_year==-1:
+    if(student_year==-1):
         return {'error': "invalid Batch start year"}
     
     result = api.get_fees_structure(student_year)
@@ -48,7 +48,7 @@ def promo_code_exist():
 @app.route('/API/installment_status', methods=['GET', 'POST'])
 def installment_status():
     userid = api.get_user_id(request.get_json()['Email'])
-    if userid ==-1:
+    if(userid ==-1):
         return {'error': "invalid email or db down"}
     
     result = api.installment_exist(userid,request.get_json()['installment_number'])
