@@ -12,7 +12,7 @@ def user_exist():
     result = api.user_exist(request.get_json()['email'])
     if result["error"] == 1:
         return {'error': "Database is down"}
-    return {'error': "none", result["result"]: result}
+    return {'error': "none", "result": result["result"]}
 
 @app.route('/API/RegisterUser', methods=['GET', 'POST'])
 def RegisterUser():
@@ -22,7 +22,7 @@ def RegisterUser():
                                 request.get_json()['MobileNumber'])
     if result == -1:
         return {'error': "Database is down"}
-    return {'error': "none", result: "done"}
+    return {'error': "none", "result": "done"}
 
 
 @app.route('/API/Fee_table_content', methods=['GET', 'POST'])
@@ -35,14 +35,14 @@ def Fee_table_content():
 
     if result == -1:
         return {'error': "Database is down"}
-    return {'error': "none", result: result}
+    return {'error': "none", "result": result}
 
 @app.route('/API/promo_code_exist', methods=['GET', 'POST'])
 def promo_code_exist():
     result = api.promo_code(request.get_json()['promo_code'])
     if result == -1:
         return {'error': "Database is down"}
-    return {'error': "none", result: result}
+    return {'error': "none", "result": result}
 
 @app.route('/API/installment_status', methods=['GET', 'POST'])
 def installment_status():
