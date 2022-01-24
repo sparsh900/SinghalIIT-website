@@ -10,7 +10,8 @@ app = Flask(__name__)
 @app.route('/API/user_exist', methods=['GET', 'POST'])
 def user_exist():
     result = api.user_exist(request.get_json()['email'])
-    if result == -2:
+    print(result)
+    if result == -1:
         return {'error': "Database is down"}
     return {'error': "none", result: result}
 
@@ -45,11 +46,11 @@ def promo_code_exist():
     return {'error': "none", result: result}
 
 @app.route('/API/installment_status', methods=['GET', 'POST'])
-def promo_code_exist():
+def installment_status():
     userid = api.get_user_id(request.get_json()['Email'])
-    if(userid ==-1){
+    if userid ==-1:
         return {'error': "invalid email or db down"}
-    }
+    
     result = api.installment_exist(userid,request.get_json()['installment_number'])
     if result == -1:
         return {'error': "Database is down"}

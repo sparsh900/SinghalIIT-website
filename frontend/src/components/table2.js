@@ -7,14 +7,13 @@ export default class Table_2 extends Component {
     constructor(props) {
 
         super(props);
-        
         this.state = {
             table_content: []
         }
     }
 
     componentDidMount() {
-        axios.post('/API/Fee_table_content', localStorage.getItem('mail'))
+        axios.post('/API/Fee_table_content', {Email: localStorage.getItem('mail')})
             .then(res => {
                 if(res.data.error==='none'){
                     console.log(res.data.result)

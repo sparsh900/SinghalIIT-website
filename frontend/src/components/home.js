@@ -59,6 +59,7 @@ export default class Home extends Component {
         this.setState({ email: response.profileObj.email })
         axios.post('/API/user_exist',{email: response.profileObj.email})
     .then(res=>{
+        console.log('ggggggggggggggggg')
     if(res.data.error=='none'){
       if(res.data.result==false){
           this.updateval3()
