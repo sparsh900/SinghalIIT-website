@@ -1,8 +1,31 @@
 import React, { Component } from 'react'
 import { Table, Row, Col } from "react-bootstrap"
+import axios from 'axios'
 import "../App.css"
 
 export default class Table_2 extends Component {
+    constructor(props) {
+
+        super(props);
+        this.state = {
+            table_content: []
+        }
+    }
+
+    componentDidMount() {
+        axios.post('/API/Fee_table_content', {Email: localStorage.getItem('mail')})
+            .then(res => {
+                if(res.data.error==='none'){
+                    console.log(res.data.result)
+                  }
+                  else{
+                      alert(res.data.error)
+                      alert("try again after some time")
+                  }
+            })
+            .catch(err => console.error(err))
+    }
+
     render() {
         return (
             <div>
@@ -12,14 +35,25 @@ export default class Table_2 extends Component {
                             <Table className="table table-border" size='lg' scrollX hover>
                                 <thead>
                                     <tr className='table_row_heading'>
-                                        <th className='table_column_heading'>Student Name</th>
-                                        <th className='table_column_heading'>Enrollment Date</th>
-                                        <th className='table_column_heading'>Bonus Amount</th>
-                                        
+                                        <th className='table_column_heading'>Installment Number</th>
+                                        <th className='table_column_heading'>Due Date</th>
+                                        <th className='table_column_heading'>Amount Enrollment</th>
+
                                     </tr>
                                 </thead>
                                 <tbody className='table_body_padding'>
-                                    <tr className='table_row2'>
+                                    {this.state.table_content.map((trow, index) => {
+                                        return (
+                                            <tr className='table_row2' key={trow.email}>
+                                                <th>{index + 1}</th>
+                                                <td>{trow.name}</td>
+                                                <td>{trow.email}</td>
+                                                <td>{trow.email}</td>
+                                            </tr>
+                                        )
+
+                                    })}
+                                    {/* <tr className='table_row2'>
                                         <td >1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
@@ -41,7 +75,7 @@ export default class Table_2 extends Component {
                                         <td >1</td>
                                         <td>Mark</td>
                                         <td>Otto</td>
-                                    </tr>
+                                    </tr> */}
                                 </tbody>
                             </Table>
                         </div>
