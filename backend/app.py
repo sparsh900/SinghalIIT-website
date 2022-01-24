@@ -10,9 +10,9 @@ app = Flask(__name__)
 @app.route('/API/user_exist', methods=['GET', 'POST'])
 def user_exist():
     result = api.user_exist(request.get_json()['email'])
-    if result == -2:
+    if result["error"] == 1:
         return {'error': "Database is down"}
-    return {'error': "none", result: result}
+    return {'error': "none", result["result"]: result}
 
 @app.route('/API/RegisterUser', methods=['GET', 'POST'])
 def RegisterUser():
