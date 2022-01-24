@@ -6,9 +6,9 @@ import "../App.css"
 
 export default class Student_enrollment extends Component {
     render() {
+        // if(localStorage.getItem('mail')==null){
         return (
             <div>
-                
                 <Row className='justify-content-center'>
                     <Col md={5} xs={10}>
                         <Promocode/>
@@ -19,5 +19,6 @@ export default class Student_enrollment extends Component {
                 </Row>
             </div>
         )
+        // }
     }
 }
