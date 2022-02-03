@@ -15,7 +15,7 @@ class My_Profile extends Component{
                 <Top_bk_image_2/>
                 <Row className='justify-content-center form1_padding'>
                     <Col xl={3} lg={4} md={8} xs={9}>
-                    <Form_1/>
+                    <Form_1 email={this.props.email}/>
                     </Col>
                 </Row>
 

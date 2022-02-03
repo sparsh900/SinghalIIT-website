@@ -17,55 +17,115 @@ import Dashboard1 from "../image/dashboard1.png"
 import Dashboard2 from "../image/dashboard2.png"
 import Dashboard3 from "../image/dashboard3.png"
 import Dashboard4 from "../image/dashboard4.png"
+import Dashboard5 from "../image/dashboard5.png"
 import "../App.css";
 import axios from 'axios'
 
 class Dashboard extends Component{
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            status: ''
+        };
+    }
+
     componentDidMount(){
-
-        axios.get('/API/time')
-          .then(res=>{
-            console.log(res.data)
+        const l = {
+             Email: localStorage.getItem('mail'),
+             installment_number: 1
+          }
+    
+          axios.post('/API/installment_status', l)
+            .then(res => {
+             if(res.data.error =='none' ){
+               if(res.data.result==1){
+                this.setState({
+                    status: 1
+                  })
+               }
+            }
+            else{
+              alert(res.data.error)
+              alert("try again")
+            }
           })
-          .catch(err=>console.error(err))
-        }
-
+          .catch(err=> console.error(err))
+    }
         
     render(){
-        return (
-            <div className='scroll_remove'>
-                <Navigationbar/>
-                <Top_bk_image/>
-                <Row className='card-row justify-content-center'>
-                    <Col xs={6} lg={3} className='card_col_padding text-center'>
-                    <Card_render src={Dashboard1} label={"Lectures"}/>
-                    </Col>
-                    <Col xs={6} lg={3} className='card_col_padding text-center'>
-                    <Card_render src={Dashboard2} label={"Chat with Us"}/>
-                    </Col>
-                    <Col xs={6} lg={3} className='card_col_padding text-center'>
-                    <Card_render src={Dashboard3} label={"Study Material"}/>
-                    </Col>
-                    <Col xs={6} lg={3} className='card_col_padding text-center'>
-                    <Card_render src={Dashboard4} label={"Practice Tests"}/>
-                    </Col>
-                </Row>
-                {/* <Row className='justify-content-center'>
-                    <Col lg={3} md={8} xs={10}>
-                    <Form_1/>
-                    </Col>
-                </Row>
+        if(this.state.status==1){
+            return (
+                <div className='scroll_remove'>
+                    <Navigationbar/>
+                    <Top_bk_image/>
+                    <Row className='card-row justify-content-center'>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard1} label={"Lectures"}/>
+                        </Col>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard2} label={"Chat with Us"}/>
+                        </Col>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard3} label={"Study Material"}/>
+                        </Col>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard4} label={"Practice Tests"}/>
+                        </Col>
+                    </Row>
+                    {/* <Row className='justify-content-center'>
+                        <Col lg={3} md={8} xs={10}>
+                        <Form_1/>
+                        </Col>
+                    </Row>
+    
+                    <Contact_us/>
+                    <How_it_works/>
+                    <Table1/>
+                    <Modal3/>
+                    <Header_2/> */}
+                    <Footer/>
+                    
+                </div>
+            )
+        }
 
-                <Contact_us/>
-                <How_it_works/>
-                <Table1/>
-                <Modal3/>
-                <Header_2/> */}
-                <Footer/>
-                
-            </div>
-        )
+        else{
+            return (
+                <div className='scroll_remove'>
+                    <Navigationbar/>
+                    <Top_bk_image/>
+                    <Row className='card-row justify-content-center'>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard5} label={"Student Enrollment"}/>
+                        </Col>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard2} label={"Chat with Us"}/>
+                        </Col>
+                        {/* <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard3} label={"Study Material"}/>
+                        </Col>
+                        <Col xs={6} lg={3} className='card_col_padding text-center'>
+                        <Card_render src={Dashboard4} label={"Practice Tests"}/>
+                        </Col> */}
+                    </Row>
+                    {/* <Row className='justify-content-center'>
+                        <Col lg={3} md={8} xs={10}>
+                        <Form_1/>
+                        </Col>
+                    </Row>
+    
+                    <Contact_us/>
+                    <How_it_works/>
+                    <Table1/>
+                    <Modal3/>
+                    <Header_2/> */}
+                    <Footer/>
+                    
+                </div>
+            )
+        }
+        
     }
 }
 

@@ -40,11 +40,14 @@ export default class Form_1 extends Component {
   
         axios.post('/API/RegisterUser', login)
           .then(res => {
-           if(res.data ==true ){
+           if(res.data.error =='none' ){
+             if(res.data.result=='done'){
                 localStorage.setItem('mail',this.props.email )
                 window.location.reload()
+             }
           }
           else{
+            alert(res.data.error)
             alert("try again")
           }
         })

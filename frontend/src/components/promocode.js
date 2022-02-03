@@ -12,7 +12,7 @@ export default class Promocode extends Component {
                 <Form>
                     <Form.Group className="mb-3 feild_padding" controlId="formBasicEmail">
                         <Row className="justify-content-center">
-                            <Col md={7} xs={10}>
+                            <Col lg={7} xs={8}>
                                 <Form.Label className='form_label'>Enter Promo Code</Form.Label>
                                 <div className='in_row'>
                                     <Form.Control type="name" className='promocode_input' />

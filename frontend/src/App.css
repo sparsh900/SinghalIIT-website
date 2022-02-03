@@ -3,6 +3,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400:600;700;900&display=swap');
 
+td { position: relative; }
+
+tr.strikeout td:before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  border-bottom: 1px solid #111;
+  width: 100%;
+  margin-left: 16px;
+  margin-right: 20px;
+}
+
+tr.strikeout td:after {
+  content: "\00B7";
+  font-size: 1px;
+}
+
 .navb{
   color: #003638;
   background-color: #003638;
@@ -17,6 +35,8 @@ font-size: 1.3vw;
 line-height: 1.4vw;
 text-align: center;
 } */
+
+
 
 .main_logo{
   width: 80%;
@@ -39,7 +59,17 @@ text-align: center;
   font-size: 20px !important;
   line-height: 18px;
   text-align: right !important;
-  margin-right: 10% !important;
+  margin-right: 2vw !important;
+}
+
+.logo_link1{
+  color: #FFFFFF  !important;
+  font-family: Raleway !important ;
+  font-style: normal !important;
+  font-weight: 500  !important;
+  font-size: 24px !important;
+  line-height: 18px;
+  text-align: right !important;
 }
 
 /*-------------------------------------------------*/

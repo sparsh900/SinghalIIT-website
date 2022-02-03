@@ -128,7 +128,7 @@ def get_fees_structure(year):
             cur.execute(sql,(year))
             data = cur.fetchone()
 
-            keys = ["BatchStartYear", "1stInstallmentAmount", "2ndInstallmentAmount", "3rdInstallmentAmount", "1stInstallmentDueDate", "2ndInstallmentDueDate", "3rdInstallmentDueDate", "1stInstallmentDueDate","2ndInstallmentDueDate", "3rdInstallmentDueDate","PromotionBonusAmount","PromotionDiscountAmount"]
+            keys = ["BatchStartYear", "firststInstallmentAmount", "secondInstallmentAmount", "thirdInstallmentAmount", "firstInstallmentDueDate", "secondInstallmentDueDate", "thirdInstallmentDueDate", "firstInstallmentDueDate","secondInstallmentDueDate", "thirdInstallmentDueDate","PromotionBonusAmount","PromotionDiscountAmount"]
             
             dic={}
             for i in range(len(data)):
