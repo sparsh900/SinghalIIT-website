@@ -280,6 +280,26 @@ def installment_status(userid,installment_number):
         return {"error":1}
 
 
+def submit_studymaterial(subject,topic,file_name):
+    conn = pymysql.connect(
+        host = rds.host,
+        port = rds.port,
+        user = rds.user,
+        password = rds.password,
+        db = rds.databasename,
+    )
+    try:
+        with conn.cursor() as cur:
+            sql = "insert into StudyMaterial(SubjectX, Topic, MaterialFile) value(%s,%s,%s)"
+            cur.execute(sql,(subject,topic,file_name))
+            conn.commit()
+            return 1
+
+    except Exception as e:
+        print("error in getting fees structure error: ",str(e))
+        return 0
+
+
 def user_data(email):
     conn = pymysql.connect(
         host = rds.host,
@@ -324,31 +344,6 @@ def details_save(details):
         return 0
 
 
-def password_correction(details):
-    conn = pymysql.connect(
-        host = rds.host,
-        port = rds.port,
-        user = rds.user,
-        password = rds.password,
-        db = rds.databasename,
-    )
-    try:
-        with conn.cursor() as cur:
-
-
-            sql = "select PasswordHash from UserMaster where Email = %s"
-            cur.execute(sql,(details['email']))
-            password = cur.fetchone()           
-
-
-            if(crypt.decrypt(bytes(str(password[0]), encoding='utf-8')) == details['password']):
-                return 1
-            return 0
-
-
-    except Exception as e:
-        print("error in password correction error: ",str(e))
-        return 0
 
 
 def change_password(details):

@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import aws_db as api
-
+import os
 import time 
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-
+UPLOAD_FOLDER = '/media'
 
 
 @app.route('/API/user_exist', methods=['GET', 'POST'])
@@ -61,6 +62,50 @@ def installment_status():
             return {'error': "error in getting installment status"}
         else:
             return {'error': "none", result: status["result"]}
+
+
+
+
+
+
+def upload_media(Mfile):
+    target = os.path.join(UPLOAD_FOLDER)
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    filename = secure_filename(Mfile.filename)
+    destination="/".join([target, filename])
+    if os.path.isfile(destination):
+        return "already_exists"
+    file.save(destination)
+    return filename
+
+def delete_media(filename):
+    target = os.path.join(UPLOAD_FOLDER)
+    if not os.path.isdir(target):
+        os.mkdir(target)
+    destination="/".join([target, filename])
+    if os.path.isfile(destination):
+        os.remove(destination)
+    return
+
+
+@app.route('/API/submit_studymaterial', methods=['GET', 'POST'])
+def submit_studymaterial():
+    subject = request.get_json()['Subject']
+    topic = request.get_json()['Topic']
+    Mfile = request.files['file']
+
+    Mfile_name = upload_media(Mfile)
+
+    if(Mfile_name=="already_exists"):
+        return {'error': "file name already exist choose other name"}
+
+    result = api.submit_studymaterial()
+    if result == 0:
+        delete_media(Mfile_name)
+        return {'error': "db is too busy or down"}
+    else:
+        return {'error': 'none'}
 
 # for local 
 if __name__=='__main__':
