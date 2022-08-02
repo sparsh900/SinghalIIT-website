@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navigationbar from './navbar';
 import Top_bk_image from './top_background_image';
-import {Col, Row} from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import Card_render from './card';
 import Footer from './footer';
 import Form_1 from './form1';
@@ -18,10 +18,11 @@ import Dashboard2 from "../image/dashboard2.png"
 import Dashboard3 from "../image/dashboard3.png"
 import Dashboard4 from "../image/dashboard4.png"
 import Dashboard5 from "../image/dashboard5.png"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
 import axios from 'axios'
 
-class Dashboard extends Component{
+class Dashboard extends Component {
 
     constructor(props) {
         super(props);
@@ -30,47 +31,48 @@ class Dashboard extends Component{
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const l = {
-             Email: localStorage.getItem('mail'),
-             installment_number: 1
-          }
-    
-          axios.post('/API/installment_status', l)
+            Email: localStorage.getItem('mail'),
+            installment_number: 1
+        }
+
+        axios.post('/API/installment_status', l)
             .then(res => {
-             if(res.data.error =='none' ){
-               if(res.data.result==1){
-                this.setState({
-                    status: 1
-                  })
-               }
-            }
-            else{
-              alert(res.data.error)
-              alert("try again")
-            }
-          })
-          .catch(err=> console.error(err))
+                if (res.data.error == 'none') {
+                    if (res.data.result == 1) {
+                        this.setState({
+                            status: 1
+                        })
+                    }
+                }
+                else {
+                    alert(res.data.error)
+                    alert("try again")
+                }
+            })
+            .catch(err => console.error(err))
+
     }
-        
-    render(){
-        if(this.state.status==1){
+
+    render() {
+        if (this.state.status == 1) {
             return (
                 <div className='scroll_remove'>
-                    <Navigationbar/>
-                    <Top_bk_image/>
+                    <Navigationbar />
+                    <Top_bk_image />
                     <Row className='card-row justify-content-center'>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard1} label={"Lectures"}/>
+                            <Card_render src={Dashboard1} label={"Lectures"} />
                         </Col>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard2} label={"Chat with Us"}/>
+                            <Card_render src={Dashboard2} label={"Chat with Us"} />
                         </Col>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard3} label={"Study Material"}/>
+                            <Card_render src={Dashboard3} label={"Study Material"} />
                         </Col>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard4} label={"Practice Tests"}/>
+                            <Card_render src={Dashboard4} label={"Practice Tests"} />
                         </Col>
                     </Row>
                     {/* <Row className='justify-content-center'>
@@ -84,23 +86,26 @@ class Dashboard extends Component{
                     <Table1/>
                     <Modal3/>
                     <Header_2/> */}
-                    <Footer/>
-                    
+                    <Footer />
+
                 </div>
             )
         }
 
-        else{
+        else {
             return (
                 <div className='scroll_remove'>
-                    <Navigationbar/>
-                    <Top_bk_image/>
+                    <Navigationbar />
+                    <Top_bk_image />
                     <Row className='card-row justify-content-center'>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard5} label={"Student Enrollment"}/>
+                            <a href='/student_enrollment'>
+                                <Card_render src={Dashboard5} label={"Student Enrollment"} />
+                            </a>
+
                         </Col>
                         <Col xs={6} lg={3} className='card_col_padding text-center'>
-                        <Card_render src={Dashboard2} label={"Chat with Us"}/>
+                            <Card_render src={Dashboard2} label={"Chat with Us"} />
                         </Col>
                         {/* <Col xs={6} lg={3} className='card_col_padding text-center'>
                         <Card_render src={Dashboard3} label={"Study Material"}/>
@@ -120,12 +125,12 @@ class Dashboard extends Component{
                     <Table1/>
                     <Modal3/>
                     <Header_2/> */}
-                    <Footer/>
-                    
+                    <Footer />
+
                 </div>
             )
         }
-        
+
     }
 }
 

@@ -33,6 +33,7 @@ def Fee_table_content():
         return {'error': "invalid Batch start year"}
     
     result = api.get_fees_structure(student_year)
+    print(result,student_year)
 
     if result["error"] == 1:
         return {'error': "Database is down"}
@@ -55,13 +56,13 @@ def installment_status():
     if result == -1:
         return {'error': "Database is down"}
     if result == 0:
-        return {'error': "none", result: "No Payment call"}
+        return {'error': "none", 'result': "No Payment call"}
     else:
         status = api.installment_status(userid,request.get_json()['installment_number'])
         if status["error"] == 1:
             return {'error': "error in getting installment status"}
         else:
-            return {'error': "none", result: status["result"]}
+            return {'error': "none", 'result': status["result"]}
 
 
 
@@ -91,21 +92,24 @@ def delete_media(filename):
 
 @app.route('/API/submit_studymaterial', methods=['GET', 'POST'])
 def submit_studymaterial():
-    subject = request.get_json()['Subject']
-    topic = request.get_json()['Topic']
+    print('1111111111111')
+    subject = request.form['Subject']
+    # # print(subject)
+    topic = request.form['Topic']
     Mfile = request.files['file']
+    # print('1111111111111')
+    print(topic)
+    # Mfile_name = upload_media(Mfile)
 
-    Mfile_name = upload_media(Mfile)
+    # if(Mfile_name=="already_exists"):
+    #     return {'error': "file name already exist choose other name"}
 
-    if(Mfile_name=="already_exists"):
-        return {'error': "file name already exist choose other name"}
-
-    result = api.submit_studymaterial()
-    if result == 0:
-        delete_media(Mfile_name)
-        return {'error': "db is too busy or down"}
-    else:
-        return {'error': 'none'}
+    # result = api.submit_studymaterial()
+    # if result == 0:
+    #     delete_media(Mfile_name)
+    #     return {'error': "db is too busy or down"}
+    # else:
+    #     return {'error': 'none'}
 
 # for local 
 if __name__=='__main__':

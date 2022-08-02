@@ -58,7 +58,7 @@ export default class Form_1 extends Component {
         return (
             <div>
                 <Form onSubmit={this.onSubmitlogin}>
-                    <Form.Group className="mb-3 feild_padding" controlId="formBasicEmail">
+                    <Form.Group className="mb-3 feild_padding" controlId="formBasicEmail"> 
                         <Form.Label className='form_label'>Name</Form.Label>
                         <Form.Control type="name" className='form_input' value={this.state.name} onChange={this.onChangeName}/>
                         {/* <Form.Text className="text-muted">

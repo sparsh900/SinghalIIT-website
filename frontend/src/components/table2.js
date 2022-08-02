@@ -25,7 +25,7 @@ export default class Table_2 extends Component {
             .then(res => {
                 if (res.data.error === 'none') {
                     this.setState({
-                        firstinstallmentduedate: (res.data.result.firstInstallmentDueDate-this.props.discount),
+                        firstinstallmentduedate: (res.data.result.firstInstallmentDueDate - this.props.discount),
                         secondinstallmentduedate: res.data.result.secondInstallmentDueDate,
                         thirdinstallmentduedate: res.data.result.thirdInstallmentDueDate,
                         firstinstallmentamount: res.data.result.firstInstallmentAmount,
@@ -40,68 +40,68 @@ export default class Table_2 extends Component {
             })
             .catch(err => console.error(err))
 
-            const l1 = {
-                Email: localStorage.getItem('mail'),
-                installment_number: 1
-             }
-       
-             axios.post('/API/installment_status', l1)
-               .then(res => {
-                if(res.data.error =='none' ){
-                  if(res.data.result==1){
-                   this.setState({
-                       status1: true
-                     })
-                  }
-               }
-               else{
-                 alert(res.data.error)
-                 alert("try again")
-               }
-             })
-             .catch(err=> console.error(err))
+        const l1 = {
+            Email: localStorage.getItem('mail'),
+            installment_number: 1
+        }
 
-             const l2 = {
-                Email: localStorage.getItem('mail'),
-                installment_number: 2
-             }
-       
-             axios.post('/API/installment_status', l2)
-               .then(res => {
-                if(res.data.error =='none' ){
-                  if(res.data.result==1){
-                   this.setState({
-                       status2: true
-                     })
-                  }
-               }
-               else{
-                 alert(res.data.error)
-                 alert("try again")
-               }
-             })
-             .catch(err=> console.error(err))
+        axios.post('/API/installment_status', l1)
+            .then(res => {
+                if (res.data.error == 'none') {
+                    if (res.data.result == 1) {
+                        this.setState({
+                            status1: true
+                        })
+                    }
+                }
+                else {
+                    alert(res.data.error)
+                    alert("try again")
+                }
+            })
+            .catch(err => console.error(err))
 
-             const l3 = {
-                Email: localStorage.getItem('mail'),
-                installment_number: 3
-             }
-       
-             axios.post('/API/installment_status', l3)
-               .then(res => {
-                if(res.data.error =='none' ){
-                  if(res.data.result==1){
-                   this.setState({
-                       status3: true
-                     })
-                  }
-               }
-               else{
-                 alert(res.data.error)
-                 alert("try again")
-               }
-             })
-             .catch(err=> console.error(err))
+        const l2 = {
+            Email: localStorage.getItem('mail'),
+            installment_number: 2
+        }
+
+        axios.post('/API/installment_status', l2)
+            .then(res => {
+                if (res.data.error == 'none') {
+                    if (res.data.result == 1) {
+                        this.setState({
+                            status2: true
+                        })
+                    }
+                }
+                else {
+                    alert(res.data.error)
+                    alert("try again")
+                }
+            })
+            .catch(err => console.error(err))
+
+        const l3 = {
+            Email: localStorage.getItem('mail'),
+            installment_number: 3
+        }
+
+        axios.post('/API/installment_status', l3)
+            .then(res => {
+                if (res.data.error == 'none') {
+                    if (res.data.result == 1) {
+                        this.setState({
+                            status3: true
+                        })
+                    }
+                }
+                else {
+                    alert(res.data.error)
+                    alert("try again")
+                }
+            })
+            .catch(err => console.error(err))
     }
 
     render() {
@@ -137,14 +137,14 @@ export default class Table_2 extends Component {
                                         <td>{this.state.firstinstallmentamount}</td>
 
                                     </tr>
-                                    <tr className={"table_row2 " + (this.state.status1 ? 'strikeout' : 'strikeout')}>
-                                    <td >2nd Installment</td>
+                                    <tr className={"table_row2 " + (this.state.status2 ? 'strikeout' : 'strikeout')}>
+                                        <td >2nd Installment</td>
                                         <td>{this.state.secondinstallmentduedate}</td>
                                         <td>{this.state.secondinstallmentamount}</td>
 
                                     </tr>
-                                    <tr className={"table_row2 " + (this.state.status1 ? 'strikeout' : '')}>
-                                    <td >3rd Installment</td>
+                                    <tr className={"table_row2 " + (this.state.status3 ? 'strikeout' : '')}>
+                                        <td >3rd Installment</td>
                                         <td>{this.state.thirdinstallmentduedate}</td>
                                         <td>{this.state.thirdinstallmentamount}</td>
 
